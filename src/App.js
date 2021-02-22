@@ -1,18 +1,25 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Login from './components/Login';
+import Header from './components/Header';
+import CreatePost from './components/CreatePost';
 
 function App() {
   const [user, setUser] = useState('');
+  
+  useEffect(() => {
+    document.title = user ? `${user}'s Feed` : 'Foodie Gram'
+  })
 
   if(!user){
     return <Login setUser={setUser} />
   }
 
   return (
-    <h1>
-      FoodieGram
-    </h1>
+    <>
+      <Header user={user} setUser={setUser}/>
+      <CreatePost user={user}/>
+    </>
   );
 }
 
