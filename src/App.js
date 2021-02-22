@@ -1,10 +1,18 @@
 import './App.css';
+import React, {useState} from 'react';
+import Login from './components/Login';
 
 function App() {
+  const [user, setUser] = useState('');
+
+  if(!user){
+    return <Login setUser={setUser} />
+  }
+
   return (
-    <div>
+    <h1>
       FoodieGram
-    </div>
+    </h1>
   );
 }
 
