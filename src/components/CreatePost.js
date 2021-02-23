@@ -1,14 +1,16 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useContext} from 'react';
+import { PostContext } from '../App';
 
-function CreatePost({ user, handleAddPost }){
+function CreatePost({ user }){
+    const { dispatch } = useContext(PostContext);
     const [content, setContent] = useState('');
     const [photo, setPhoto] = useState(null);
     const photoInputRef = useRef();
 
     function handleSubmit(event){
         event.preventDefault();
-        const post = { content: content, photo: photo, user: user };
-        handleAddPost(post);
+        const post = { content: content, photo: photo, user: user, id: Date.now() };
+        dispatch({ type: "ADD_POST", payload: { post } });
         setContent('');
         photoInputRef.current.value = '';
     }

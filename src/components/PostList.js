@@ -3,9 +3,9 @@ import Post from './Posts'
 
 function PostList({ posts }){
     return(
-        posts.map((post, index) => (
-            <Post key={index} {...post} />
-          ))
+        posts.map(post => 
+            <Post key={post.id} {...post} />
+          )
     )
 }
 
